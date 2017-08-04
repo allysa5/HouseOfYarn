@@ -33,13 +33,17 @@ public class LoginServlet extends HttpServlet {
 		String Yuseremail = request. getParameter ("email");
 		String Yuserpassword = request.getParameter("password");
 		String nextPage = "home.jsp";
-		String message = "invalid user";
 		HttpSession session = request.getSession();
 
 		if (DbUser.isValidUser(Yuseremail,Yuserpassword)){
 			//add the valid user to the session
 			session.setAttribute("user", DbUser.getUserByEmail(Yuseremail));
-			nextPage = "/home";
+			nextPage = "/Home";
+		}else{
+			//probably not necessary but you can clear all session variables just to be sure nobody can access them 
+			session.invalidate();
+			//they put in the wrong password or don't exist in the database
+			nextPage = "/login.jsp";
 		}
 
 		//Your work here is done. Redirect to next page as indicated by the value of the nextURL variable

@@ -5,7 +5,7 @@ import javax.persistence.Persistence;
 
 public class DbUtil {
 private static final EntityManagerFactory emf = 
-Persistence.createEntityManagerFactory("House Of Yarn");
+Persistence.createEntityManagerFactory("HouseOfYarn2");
 	public static EntityManagerFactory getEmFactory() {
 		return emf;
 	}

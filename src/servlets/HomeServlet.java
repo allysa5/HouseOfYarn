@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Product;
+import util.DbProduct;
 
 
 /**
@@ -63,7 +64,7 @@ public class HomeServlet extends HttpServlet {
 
 		//get posts based on parameters; if no parameters then get all posts
 		List<Product> products = null;
-		
+		products = DbProduct.getProducts();
 
 		//add posts to session
 		session.setAttribute("products", products);
