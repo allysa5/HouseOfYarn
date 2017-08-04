@@ -16,7 +16,6 @@ public class Yuseritem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int itemid;
 
 	private String list;
@@ -92,11 +91,6 @@ public class Yuseritem implements Serializable {
 
 	public void setYuser(Yuser yuser) {
 		this.yuser = yuser;
-	}
-
-	public static void setProduct(Product product) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

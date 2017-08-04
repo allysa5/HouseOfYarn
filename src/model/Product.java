@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.*;
 
 
@@ -17,8 +15,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int productid;
+	private long productid;
 
 	private String image;
 
@@ -30,12 +27,10 @@ public class Product implements Serializable {
 
 	private String productname;
 
-	private Object Yuseritems;
-
 	public Product() {
 	}
 
-	public int getProductid() {
+	public long getProductid() {
 		return this.productid;
 	}
 
@@ -82,24 +77,5 @@ public class Product implements Serializable {
 	public void setProductname(String productname) {
 		this.productname = productname;
 	}
-	public List<Yuseritem> getYuseritem(){
-		return this.getYuseritem();
-	}
-	public void setYuseritems(List<Yuseritem> yuseritems) {
-		this.Yuseritems = Yuseritems;
-	}
 
-	public Yuseritem addSamitem(Yuseritem yuseritem) {
-		getYuseritem().add(yuseritem);
-		Yuseritem.setProduct(this);
-
-		return yuseritem;
-	}
-
-	public Yuseritem removeSamitem(Yuseritem yuseritem) {
-		getYuseritem().remove(yuseritem);
-		yuseritem.setProduct(null);
-
-		return yuseritem;
-	}
 }

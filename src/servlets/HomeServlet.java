@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,16 +42,17 @@ public class HomeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 
-		String action = request.getParameter("action");
+		String action = "";//request.getParameter("action");
 
-		String searchtype = request.getParameter("search_param");
+		//String searchtype = request.getParameter("search_param");
 
-		String searchtext = request.getParameter("searchtext");
+		//String searchtext = request.getParameter("searchtext");
 
 		//first... check that the action variable contains something
 		//then the code below will determine if they clicked logout and kill the session
 		//before sending the user back to the login page
 		
+		/*
 		if(!(action==null)){
 			if (request.getParameter("action").toString().equals("logout")){
 				//Go back to login.jsp. 
@@ -60,14 +62,16 @@ public class HomeServlet extends HttpServlet {
 				return;//return here exits the method and prevents an error
 			}
 		}
+		*/
 
 
 		//get posts based on parameters; if no parameters then get all posts
 		List<Product> products = null;
 		products = DbProduct.getProducts();
+		System.out.println(products.get(0).getProductid());
 
 		//add posts to session
-		session.setAttribute("products", products);
+		//session.setAttribute("products", products);
 		
 		nextURL = "/home.jsp";
 		//redirect to next page as indicated by the value of the nextURL variable
