@@ -94,4 +94,9 @@ public class Yuseritem implements Serializable {
 		this.yuser = yuser;
 	}
 
+	public static void setProduct(Product product) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

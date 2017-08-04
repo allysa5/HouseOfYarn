@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -27,6 +29,8 @@ public class Product implements Serializable {
 	private int productinv;
 
 	private String productname;
+
+	private Object Yuseritems;
 
 	public Product() {
 	}
@@ -78,5 +82,24 @@ public class Product implements Serializable {
 	public void setProductname(String productname) {
 		this.productname = productname;
 	}
+	public List<Yuseritem> getYuseritem(){
+		return this.getYuseritem();
+	}
+	public void setYuseritems(List<Yuseritem> yuseritems) {
+		this.Yuseritems = Yuseritems;
+	}
 
+	public Yuseritem addSamitem(Yuseritem yuseritem) {
+		getYuseritem().add(yuseritem);
+		Yuseritem.setProduct(this);
+
+		return yuseritem;
+	}
+
+	public Yuseritem removeSamitem(Yuseritem yuseritem) {
+		getYuseritem().remove(yuseritem);
+		yuseritem.setProduct(null);
+
+		return yuseritem;
+	}
 }
