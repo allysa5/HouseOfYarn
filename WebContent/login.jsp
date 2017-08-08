@@ -7,8 +7,6 @@
 <title>Login Page</title>
 </head>
 <body>
-<jsp:include page="include.jsp"/>
-<jsp:include page="navbar.jsp"/>
 
 
 <form action= "LoginServlet" method="post">

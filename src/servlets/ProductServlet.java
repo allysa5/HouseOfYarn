@@ -8,19 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import util.DbUser;
+import util.DbProduct;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class ProductServlet
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/ProductServlet")
+public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public ProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,35 +28,23 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
-     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String Yuseremail = request. getParameter ("email");
-		String Yuserpassword = request.getParameter("password");
-		String nextPage = "";
 		HttpSession session = request.getSession();
-
-		if (DbUser.isValidUser(Yuseremail,Yuserpassword)){
-			//add the valid user to the session
-			session.setAttribute("user", DbUser.getUserByEmail(Yuseremail));
-			nextPage = "/home.jsp";
-		}else{
-			//probably not necessary but you can clear all session variables just to be sure nobody can access them 
-			session.invalidate();
-			//they put in the wrong password or don't exist in the database
-			nextPage = "/login.jsp";
-		}
-
-		//Your work here is done. Redirect to next page as indicated by the value of the nextURL variable
-		response.sendRedirect(request.getContextPath() + nextPage);
-
+		String nextURL = "/error.jsp";
+		int productid = Integer.parseInt(request.getParameter("productid"));
+		
+		request.setAttribute("prod", DbProduct.getProduct(productid));
+		nextURL = "/product.jsp";
+		//redirect to next page as indicated by the value of the nextURL variable
+		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 	}
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
-
 }
-

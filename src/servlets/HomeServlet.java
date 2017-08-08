@@ -68,12 +68,12 @@ public class HomeServlet extends HttpServlet {
 		//get posts based on parameters; if no parameters then get all posts
 		List<Product> products = null;
 		products = DbProduct.getProducts();
-		System.out.println(products.get(0).getProductid());
+		System.out.println(products.get(filterByUserID).getProductid());
 
 		//add posts to session
-		//session.setAttribute("products", products);
+		session.setAttribute("products", products);
 		
-		nextURL = "/home.jsp";
+		nextURL = "/login.jsp";
 		//redirect to next page as indicated by the value of the nextURL variable
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 		//	response.getWriter().append("Served at: ").append(request.getContextPath());

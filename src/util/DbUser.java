@@ -103,22 +103,22 @@ public class DbUser {
 	 * @param email
 	 * @return Bhuser with that unique email address
 	 */
-	public static Yuser getUserByEmail(String email)
+	public static Yuser getUserByEmail(String yuseremail)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		String qString = "Select u from Yuser u "
-				+ "where u.useremail = :useremail";
+				+ "where u.yuseremail = :yuseremail";
 		TypedQuery<Yuser> q = em.createQuery(qString, Yuser.class);
-		q.setParameter("useremail", email);
-		Yuser user = null;
+		q.setParameter("yuseremail", yuseremail);
+		Yuser yuser = null;
 		try {
-			user = q.getSingleResult();
+			yuser = q.getSingleResult();
 		}catch (NoResultException e){
 			System.out.println(e);
 		}finally{
 			em.close();
 		}
-		return user;
+		return yuser;
 		
 	}
 	
@@ -132,21 +132,22 @@ public class DbUser {
 	 * @param user of type Bhuser
 	 * @return true or false indicating the user exists or doesn't
 	 */
-	public static boolean isValidUser(Yuser user)
+	public static boolean isValidUser(Yuser yuser)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		String qString = "Select count(b.samid) from Samuser b "
-			+ "where b.useremail = :useremail and b.userpassword = :userpass";
+		String qString = "Select count(b.yuserid) from Yuser b "
+			+ "where b.yuseremail = :yuseremail and b.yuserpassword = :yuserpass";
 		TypedQuery<Long> q = em.createQuery(qString,Long.class);
 		boolean result = false;
-		q.setParameter("useremail", user.getYuseremail());
-		q.setParameter("userpass", user.getYuserpassword());
+		q.setParameter("yuseremail", yuser.getYuseremail());
+		q.setParameter("yuserpass", yuser.getYuserpassword());
 		
 		try{
 			long yuserId = q.getSingleResult();
 			if (yuserId > 0)
 			{
 				result = true;
+				
 			}
 		}catch (Exception e){
 			
@@ -159,19 +160,19 @@ public class DbUser {
 			
 	}
 	
-	public static boolean isValidUser(String email, String password)
+	public static boolean isValidUser(String yuseremail, String yuserpassword)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		String qString = "Select count(b.yuserid) from Yuser b "
-			+ "where b.useremail = :useremail and b.userpassword = :userpass";
+			+ "where b.yuseremail = :yuseremail and b.yuserpassword = :yuserpass";
 		TypedQuery<Long> q = em.createQuery(qString,Long.class);
 		boolean result = false;
-		q.setParameter("useremail", email);
-		q.setParameter("userpass", password);
+		q.setParameter("yuseremail", yuseremail);
+		q.setParameter("yuserpass", yuserpassword);
 		
 		try{
-			long userId = q.getSingleResult();
-			if (userId > 0)
+			long yuserId = q.getSingleResult();
+			if (yuserId > 0)
 			{
 				result = true;
 			}

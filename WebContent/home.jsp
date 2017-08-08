@@ -70,14 +70,14 @@ footer {
 			<div class="container">
 
 				<div class="col-md-3 inner">
-					<a href="ProductServlet?productid=${products.productid}"><img
-						src="${products.image}" class="img-responsive" alt="Image"
+					<a href="ProductServlet?productid=${product.productid}"><img
+						src="${product.image}" class="img-responsive" alt="Image"
 						style="height: 200px"></a>
-					<c:out value="${products.productname}" />
+					<c:out value="${product.productname}" />
 				</div>
 				<div class="col-md-3 inner">
 					$
-					<c:out value="${products.price}" />
+					<c:out value="${product.price}" />
 				</div>
 
 				<div class="col-md-3 inner">
@@ -88,7 +88,7 @@ footer {
 
 						Quantity: <input type="number" value="1" name="Quantity" min="0" />
 						<input type="hidden" name="productname"
-							value="${products.productid}" /> <input type="hidden" name="list"
+							value="${product.productid}" /> <input type="hidden" name="list"
 							value="CART" /> <input type="submit"
 							class="glyphicon glyphicon-shopping-cart" value="Add to Cart">
 						<span class="glyphicon glyphicon-shopping-cart"></span> </input>

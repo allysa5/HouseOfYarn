@@ -14,7 +14,7 @@
 			<ul class="largenav pull-right">
 				<li class="upper-links"><a class="links" href="Home">Home</a></li>
 
-				<c:if test="${user != null }">
+				<c:if test="${yuser != null }">
 
 					<li class="upper-links"><a class="links"
 						href="PurchaseHistoryServlet">Purchases</a></li>
@@ -55,7 +55,7 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#all">All Products</a></li>
 
-								<c:if test="${user != null }">
+								<c:if test="${yuser != null }">
 									<li><a href="#purchase">Purchase History</a></li>
 								</c:if>
 
@@ -83,17 +83,17 @@
 							fill="#fff "></path>
                     </svg>
 				</a>&nbsp;&nbsp;&nbsp;
-				<c:if test="${user != null }">
+				<c:if test="${yuser != null }">
 					<!-- Add profile page -->
-					<c:out value="${user.username}" />
+					<c:out value="${yuser.yusername}" />
 				</c:if>
-				<c:if test="${user == null }">
+				<c:if test="${yuser == null }">
 					<br />
 					<a href="login.jsp" style="color: black;"> Login to Account </a>
 				</c:if>
 
 			</div>
-			<c:if test="${user != null }">
+			<c:if test="${yuser != null }">
 				<form class="navbar-form navbar-left" role="form" action="Home"
 					method="post">
 					<input type="hidden" name="action" id="action" value="logout" />
