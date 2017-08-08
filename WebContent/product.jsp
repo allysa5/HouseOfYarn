@@ -22,8 +22,7 @@
 
 <c:out value="${prod.price }" /> <br />
 
-<c:out value="${prod.productdesc}" /> <br /> <br />
-
+<c:out value="${prod.productdesc}" /> <br />
 
 </body>
 </html>

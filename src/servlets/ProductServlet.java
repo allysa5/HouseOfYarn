@@ -31,7 +31,7 @@ public class ProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String nextURL = "/error.jsp";
-		int productid = Integer.parseInt(request.getParameter("productid"));
+		long productid = Long.parseLong(request.getParameter("productid"));
 		
 		request.setAttribute("prod", DbProduct.getProduct(productid));
 		nextURL = "/product.jsp";

@@ -34,7 +34,7 @@ public class Product implements Serializable {
 		return this.productid;
 	}
 
-	public void setProductid(int productid) {
+	public void setProductid(long productid) {
 		this.productid = productid;
 	}
 

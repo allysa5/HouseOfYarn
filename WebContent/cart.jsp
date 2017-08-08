@@ -81,7 +81,7 @@
 									</thead>
 									<tbody>
 										<!-- foreach ($order->lineItems as $line) or some such thing here -->
-										<c:forEach var="samitem" items="${cartitem}">
+										<c:forEach var="yuseritem" items="${cartitem}">
 											<tr>
 												<td class="col-md-4">
 													<div class="media">

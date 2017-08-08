@@ -74,11 +74,16 @@ public class DbProduct {
 
 	}
 
-	public static Product getProduct(int pID)
+	public static Product getProduct(long productid)
 	{
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
-		Product prod = em.find(Product.class, pID);
+		Product prod = em.find(Product.class, productid);
 		return prod;		
+	}
+
+	public static List<Product> searchProducts(String searchtext) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/*

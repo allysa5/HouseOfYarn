@@ -42,17 +42,20 @@ public class HomeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 
-		String action = "";//request.getParameter("action");
+		String action = request.getParameter("action");
+		//String action = "";//request.getParameter("action");
 
-		//String searchtype = request.getParameter("search_param");
+		
+		String searchtype = request.getParameter("search_param");
+		
 
-		//String searchtext = request.getParameter("searchtext");
+		String searchtext = request.getParameter("searchtext");
 
 		//first... check that the action variable contains something
 		//then the code below will determine if they clicked logout and kill the session
 		//before sending the user back to the login page
 		
-		/*
+		
 		if(!(action==null)){
 			if (request.getParameter("action").toString().equals("logout")){
 				//Go back to login.jsp. 
@@ -62,7 +65,7 @@ public class HomeServlet extends HttpServlet {
 				return;//return here exits the method and prevents an error
 			}
 		}
-		*/
+
 
 
 		//get posts based on parameters; if no parameters then get all posts
@@ -70,6 +73,21 @@ public class HomeServlet extends HttpServlet {
 		products = DbProduct.getProducts();
 		System.out.println(products.get(filterByUserID).getProductid());
 
+		System.out.println(searchtype);
+		if(searchtype != null && searchtext != null){
+			
+			if(searchtype.equals("all")){
+				products = DbProduct.searchProducts(searchtext);
+			}
+				
+		}
+		else{
+			products = DbProduct.getProducts();
+
+		}
+
+		
+		
 		//add posts to session
 		session.setAttribute("products", products);
 		

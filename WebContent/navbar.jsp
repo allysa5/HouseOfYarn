@@ -20,15 +20,6 @@
 						href="PurchaseHistoryServlet">Purchases</a></li>
 				</c:if>
 
-				<li class="upper-links"><a class="links"
-					href="http://clashhacks.in/">Link 3</a></li>
-				<li class="upper-links"><a class="links"
-					href="http://clashhacks.in/">Link 4</a></li>
-				<li class="upper-links"><a class="links"
-					href="http://clashhacks.in/">Link 5</a></li>
-				<li class="upper-links"><a class="links"
-					href="http://clashhacks.in/">Link 6</a></li>
-
 
 			</ul>
 		</div>
@@ -89,16 +80,13 @@
 				</c:if>
 				<c:if test="${yuser == null }">
 					<br />
-					<a href="login.jsp" style="color: black;"> Login to Account </a>
+					<a href="login.jsp" style="color: black;"> Login </a>
 				</c:if>
 
 			</div>
 			<c:if test="${yuser != null }">
-				<form class="navbar-form navbar-left" role="form" action="Home"
-					method="post">
-					<input type="hidden" name="action" id="action" value="logout" />
-					<button class="btn btn-default" id="addBookButton">Logout</button>
-				</form>
+				<br />
+					<a href="home.jsp" style="color: black;"> Logout </a>
 			</c:if>
 
 		</div>
@@ -126,7 +114,7 @@ $(document).ready(function(e) {
 		document.getElementById('search_param').value = "" + param;
 		
 		if(param == "purchase"){
-			document.getElementById('searchbar').action = "MyCartServlet";
+			document.getElementById('searchbar').action = "CartServlet";
 		}
 		var concept = $(this).text();
 		$('.search-panel span#search_concept').text(concept);

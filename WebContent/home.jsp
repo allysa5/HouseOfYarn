@@ -84,7 +84,7 @@ footer {
 
 
 
-					<form action="EditCart" method="post">
+					<form action="cart.jsp" method="post">
 
 						Quantity: <input type="number" value="1" name="Quantity" min="0" />
 						<input type="hidden" name="productname"
