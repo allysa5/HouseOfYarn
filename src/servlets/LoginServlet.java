@@ -35,10 +35,15 @@ public class LoginServlet extends HttpServlet {
 		String Yuserpassword = request.getParameter("password");
 		String nextPage = "";
 		HttpSession session = request.getSession();
+		System.out.println(Yuseremail + " " + Yuserpassword);
 
+		
 		if (DbUser.isValidUser(Yuseremail,Yuserpassword)){
 			//add the valid user to the session
-			session.setAttribute("user", DbUser.getUserByEmail(Yuseremail));
+			
+			System.out.println("yuser");
+			
+			session.setAttribute("yuser", DbUser.getUserByEmail(Yuseremail));
 			nextPage = "/home.jsp";
 		}else{
 			//probably not necessary but you can clear all session variables just to be sure nobody can access them 

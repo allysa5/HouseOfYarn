@@ -11,7 +11,7 @@
 
 <form action= "LoginServlet" method="post">
 Email: <input type="text" name="email" id="email"></input><br>
-password: <input type="password" name="password" ><br>
+password: <input type="password" name="password" id="password"><br>
 <input type="submit" value="Log In"></input>
 <input type="reset" value="Reset"></input>
 </form>
