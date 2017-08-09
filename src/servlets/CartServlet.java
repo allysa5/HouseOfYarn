@@ -39,7 +39,7 @@ public class CartServlet extends HttpServlet {
 
 
 
-		if (session.getAttribute("user")==null){
+		if (session.getAttribute("yuser")==null){
 			//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
 			nextURL = "/login.jsp";
 			response.sendRedirect(request.getContextPath() + nextURL);
@@ -53,7 +53,7 @@ public class CartServlet extends HttpServlet {
 				if(searchtype.equals("purchase")){
 					System.out.println(searchtext);
 					nextURL = "/cart.jsp";
-					Yuser logged = (Yuser) session.getAttribute("user");
+					Yuser logged = (Yuser) session.getAttribute("yuser");
 					List<Yuseritem > history = DbItems.searchPurchased( logged.getYuserid() ,searchtext);
 					request.setAttribute("cartitem", history);
 					getServletContext().getRequestDispatcher(nextURL).forward(request,response);
@@ -64,7 +64,7 @@ public class CartServlet extends HttpServlet {
 
 
 			nextURL = "/cart.jsp";
-			Yuser u = (Yuser) session.getAttribute("user");
+			Yuser u = (Yuser) session.getAttribute("yuser");
 
 			//	System.out.println(sam.getYuserId());
 

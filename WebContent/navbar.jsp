@@ -12,12 +12,12 @@
 	<div class="container">
 		<div class="row row1">
 			<ul class="largenav pull-right">
-				<li class="upper-links"><a class="links" href="Home">Home</a></li>
+				<li class="upper-links"><a class="links" href="home.jsp">Home</a></li>
 
 				<c:if test="${yuser != null }">
 
-					<li class="upper-links"><a class="links"
-						href="PurchaseHistoryServlet">Purchases</a></li>
+					<!-- li class="upper-links"><a class="links" -->
+						<!-- href="PurchaseHistoryServlet">Purchases</a></li> -->
 				</c:if>
 
 
@@ -47,7 +47,7 @@
 								<li><a href="#all">All Products</a></li>
 
 								<c:if test="${yuser != null }">
-									<li><a href="#purchase">Purchase History</a></li>
+									<!-- li><a href="#purchase">Purchase History</a></li> -->
 								</c:if>
 
 							</ul>
@@ -74,7 +74,7 @@
 							fill="#fff "></path>
                     </svg>
 				</a>&nbsp;&nbsp;&nbsp;
-				<c:if test="${yuser != null }">
+				<c:if test="${Yuser != null }">
 					<!-- Add profile page -->
 					<c:out value="${yuser.yusername}" />
 				</c:if>
@@ -85,8 +85,11 @@
 
 			</div>
 			<c:if test="${yuser != null }">
-				<br />
-					<a href="home.jsp" style="color: black;"> Logout </a>
+				<form class="navbar-form navbar-left" role="form" action="HomeServlet"
+					method="post">
+					<input type="hidden" name="action" id="action" value="logout" />
+					<button class="btn btn-default" id="addBookButton">Logout</button>
+				</form>
 			</c:if>
 
 		</div>

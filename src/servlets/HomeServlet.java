@@ -57,9 +57,9 @@ public class HomeServlet extends HttpServlet {
 		
 		
 		if(!(action==null)){
-			if (request.getParameter("action").toString().equals("logout")){
+			if (request.getParameter("action").equals("logout")){
 				//Go back to login.jsp. 
-				nextURL = "/login.jsp";
+				nextURL = "/home.jsp";
 				session.invalidate();
 				response.sendRedirect(request.getContextPath() + nextURL);
 				return;//return here exits the method and prevents an error
@@ -91,7 +91,7 @@ public class HomeServlet extends HttpServlet {
 		//add posts to session
 		session.setAttribute("products", products);
 		
-		nextURL = "/login.jsp";
+		nextURL = "/home.jsp";
 		//redirect to next page as indicated by the value of the nextURL variable
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 		//	response.getWriter().append("Served at: ").append(request.getContextPath());

@@ -33,35 +33,54 @@ public class EditCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session= request.getSession();
-		String nextURL ;
 
-		if (session.getAttribute("user") ==null){
-			nextURL = "/login.jsp";
-			response.sendRedirect(request.getContextPath() + nextURL);
+		String typeoflist = (String) request.getParameter("list");
+		int aP = Integer.parseInt(request.getParameter("productname"));
+		Product newCartItem = DbProduct.getProduct(aP);
+		String nextURL = "/error.jsp";
+		if(request.getParameter("Quantity").isEmpty()){
+			request.setAttribute("AddCart", "Please enter the quantity of the item you wish to purchase!");
+			nextURL = "/HomeServlet";
+			//System.out.println(request.getAttribute("AddCart"));
+			getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 			return;
 		}
+		
+		
 
-		Yuser u = (Yuser) session.getAttribute("user");
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		//Integer count = Integer.parseInt(request.getParameter("count"));
-		//System.out.println("reaches");
-		Float price = Float.parseFloat(request.getParameter("price"));
-		String url = request.getParameter("url");
+		//int userid = Integer.parseInt(request.getParameter("userid"));
+		HttpSession session = request.getSession();
+		if (session.getAttribute("yuser")==null){
+			//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
+			nextURL = "/login.jsp";
+			session.invalidate();
+			response.sendRedirect(request.getContextPath() + nextURL);
+		    return;//return prevents an error
+		}
+		
+		Yuser thisUser = (Yuser) session.getAttribute("yuser");
+		
+		Yuseritem toAdd = new Yuseritem();
+		toAdd.setList(typeoflist);
+		toAdd.setProduct(newCartItem);
+		toAdd.setQuantity(Integer.parseInt(request.getParameter("Quantity")));
+		toAdd.setPrice(newCartItem.getPrice());
 
-		Product prod = new Product();
-		prod.setProductname(name);
-		prod.setProductdesc(description);
-		prod.setPrice(price);
-		prod.setImage(url);
-
-		DbProduct.insert(prod);
-
-		response.sendRedirect(request.getContextPath());
-
+//		Date now = new Date();
+//		toAdd.setPurchasedate(now);
+//		need to allow in form the quantity. So form vs GET 
+		toAdd.setYuser(thisUser);
+		
+		
+//		if(DbItems.getItem())
+		
+		DbItems.insert(toAdd);
+		request.setAttribute("AddCart", newCartItem.getProductname() + " added to cart");
+		nextURL = "/HomeServlet";
+		//System.out.println(request.getAttribute("AddCart"));
+		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -69,4 +88,5 @@ public class EditCartServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

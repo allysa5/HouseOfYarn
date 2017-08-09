@@ -35,14 +35,10 @@ public class LoginServlet extends HttpServlet {
 		String Yuserpassword = request.getParameter("password");
 		String nextPage = "";
 		HttpSession session = request.getSession();
-		System.out.println(Yuseremail + " " + Yuserpassword);
 
 		
 		if (DbUser.isValidUser(Yuseremail,Yuserpassword)){
-			//add the valid user to the session
-			
-			System.out.println("yuser");
-			
+			//add the valid user to the session		
 			session.setAttribute("yuser", DbUser.getUserByEmail(Yuseremail));
 			nextPage = "/home.jsp";
 		}else{
