@@ -22,16 +22,19 @@ public class Yuseritem implements Serializable {
 
 	private float price;
 
-	private int productid;
-
 	@Temporal(TemporalType.DATE)
 	private Date purchasedate;
 
 	private int quantity;
 
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="productid")
+	private Product product;
+
 	//bi-directional many-to-one association to Yuser
 	@ManyToOne
-	@JoinColumn(name="YUSERID")
+	@JoinColumn(name="yuserid")
 	private Yuser yuser;
 
 	public Yuseritem() {
@@ -61,14 +64,6 @@ public class Yuseritem implements Serializable {
 		this.price = price;
 	}
 
-	public int getProductid() {
-		return this.productid;
-	}
-
-	public void setProductid(int productid) {
-		this.productid = productid;
-	}
-
 	public Date getPurchasedate() {
 		return this.purchasedate;
 	}
@@ -85,17 +80,20 @@ public class Yuseritem implements Serializable {
 		this.quantity = quantity;
 	}
 
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Yuser getYuser() {
 		return this.yuser;
 	}
 
 	public void setYuser(Yuser yuser) {
 		this.yuser = yuser;
-	}
-
-	public void setProduct(Product newCartItem) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

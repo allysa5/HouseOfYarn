@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Yuseritem;
+import model.Product;
 import model.Yuser;
 import util.DbItems;
+import util.DbProduct;
 
 /**
  * Servlet implementation class CartServlet
@@ -37,8 +39,7 @@ public class CartServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-
-
+		
 		if (session.getAttribute("yuser")==null){
 			//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
 			nextURL = "/login.jsp";

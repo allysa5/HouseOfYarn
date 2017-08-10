@@ -16,6 +16,7 @@ public class DbItems {
 			try {
 				trans.begin();
 				em.persist(cartitem);
+				System.out.println(cartitem.getItemid()+" inserted");
 				em.flush();
 				trans.commit();
 			} catch (Exception e) {

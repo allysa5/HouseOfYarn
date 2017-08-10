@@ -17,7 +17,7 @@
 
 									<tbody>
 										<!-- foreach ($order->lineItems as $line) or some such thing here -->
-										<c:forEach var="yuseritem" items="${cartitem}">
+										<c:forEach var="Yuseritem" items="${cartitem}">
 											<tr>
 												<td class="col-md-4">
 													<div class="media">

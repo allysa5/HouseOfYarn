@@ -84,10 +84,10 @@ footer {
 
 
 
-					<form action="cart.jsp" method="post">
+					<form action="EditCartServlet" method="post">
 
 						Quantity: <input type="number" value="1" name="Quantity" min="0" />
-						<input type="hidden" name="productname"
+						<input type="hidden" name="productid"
 							value="${product.productid}" /> <input type="hidden" name="list"
 							value="CART" /> <input type="submit"
 							class="glyphicon glyphicon-shopping-cart" value="Add to Cart">

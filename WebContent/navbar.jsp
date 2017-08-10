@@ -12,12 +12,12 @@
 	<div class="container">
 		<div class="row row1">
 			<ul class="largenav pull-right">
-				<li class="upper-links"><a class="links" href="home.jsp">Home</a></li>
+				<li class="upper-links"><a class="links" href="HomeServlet">Home</a></li>
 
 				<c:if test="${yuser != null }">
 
-					<!-- li class="upper-links"><a class="links" -->
-						<!-- href="PurchaseHistoryServlet">Purchases</a></li> -->
+					<li class="upper-links"><a class="links" href="CartServlet">Cart</a></li>
+
 				</c:if>
 
 
@@ -74,7 +74,7 @@
 							fill="#fff "></path>
                     </svg>
 				</a>&nbsp;&nbsp;&nbsp;
-				<c:if test="${Yuser != null }">
+				<c:if test="${yuser != null }">
 					<!-- Add profile page -->
 					<c:out value="${yuser.yusername}" />
 				</c:if>

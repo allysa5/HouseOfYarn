@@ -33,11 +33,13 @@ public class EditCartServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nextURL = "/login.jsp";
+		HttpSession session = request.getSession();
 
 		String typeoflist = (String) request.getParameter("list");
-		int aP = Integer.parseInt(request.getParameter("productname"));
-		Product newCartItem = DbProduct.getProduct(aP);
-		String nextURL = "/error.jsp";
+		long addProd = Long.parseLong(request.getParameter("productid"));
+		Product newCartItem = DbProduct.getProduct(addProd);
+		//String nextURL = "/error.jsp";
 		if(request.getParameter("Quantity").isEmpty()){
 			request.setAttribute("AddCart", "Please enter the quantity of the item you wish to purchase!");
 			nextURL = "/HomeServlet";
@@ -46,10 +48,8 @@ public class EditCartServlet extends HttpServlet {
 			return;
 		}
 		
-		
-
 		//int userid = Integer.parseInt(request.getParameter("userid"));
-		HttpSession session = request.getSession();
+		//HttpSession session = request.getSession();
 		if (session.getAttribute("yuser")==null){
 			//http://stackoverflow.com/questions/13638446/checking-servlet-session-attribute-value-in-jsp-file
 			nextURL = "/login.jsp";
@@ -76,16 +76,17 @@ public class EditCartServlet extends HttpServlet {
 		
 		DbItems.insert(toAdd);
 		request.setAttribute("AddCart", newCartItem.getProductname() + " added to cart");
-		nextURL = "/HomeServlet";
+		nextURL = "/CartServlet";
 		//System.out.println(request.getAttribute("AddCart"));
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		
+	
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("inside do post");
 		doGet(request, response);
 	}
 

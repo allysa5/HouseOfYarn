@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,7 +16,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private long productid;
+	private int productid;
 
 	private String image;
 
@@ -27,14 +28,18 @@ public class Product implements Serializable {
 
 	private String productname;
 
+	//bi-directional many-to-one association to Yuseritem
+	@OneToMany(mappedBy="product")
+	private List<Yuseritem> yuseritems;
+
 	public Product() {
 	}
 
-	public long getProductid() {
+	public int getProductid() {
 		return this.productid;
 	}
 
-	public void setProductid(long productid) {
+	public void setProductid(int productid) {
 		this.productid = productid;
 	}
 
@@ -76,6 +81,28 @@ public class Product implements Serializable {
 
 	public void setProductname(String productname) {
 		this.productname = productname;
+	}
+
+	public List<Yuseritem> getYuseritems() {
+		return this.yuseritems;
+	}
+
+	public void setYuseritems(List<Yuseritem> yuseritems) {
+		this.yuseritems = yuseritems;
+	}
+
+	public Yuseritem addYuseritem(Yuseritem yuseritem) {
+		getYuseritems().add(yuseritem);
+		yuseritem.setProduct(this);
+
+		return yuseritem;
+	}
+
+	public Yuseritem removeYuseritem(Yuseritem yuseritem) {
+		getYuseritems().remove(yuseritem);
+		yuseritem.setProduct(null);
+
+		return yuseritem;
 	}
 
 }
